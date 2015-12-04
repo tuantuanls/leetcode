@@ -1,16 +1,10 @@
 class mycomparison
 {
-    bool reverse;
 public:
-    mycomparison(const bool& revparam=false)
-    {reverse=revparam;}
-    bool operator() (const pair<int, int>& lhs, const pair<int, int>&rhs) const
-    {
-        if (reverse) return (lhs.first<rhs.first);
-        else return (lhs.first>rhs.first);
+    bool operator() (const pair<int, int>& lhs, const pair<int, int>&rhs) const {
+        return (lhs.first>rhs.first);
     }
 };
-
 
 class Solution {
 public:
@@ -31,11 +25,10 @@ public:
             curIndex = heap.top().second;
             heap.pop();
             
-            if (curNum > f[f.size()-1]) {
+            if (curNum > f.back()) {
                 f.push_back(curNum);
             }
-            
- 
+
             int prime = curNum / f[curIndex];
             int nextIndex = curIndex + 1;
             int nextNum = prime * f[nextIndex];
